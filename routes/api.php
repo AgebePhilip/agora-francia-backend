@@ -8,11 +8,16 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 
 // Public Routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/shippings', [OrderDetailController::class, 'store']);
+
+Route::post('/contacts', [ContactController::class, 'store']);
 
 
 Route::prefix('products')->group(function () {
@@ -21,7 +26,12 @@ Route::prefix('products')->group(function () {
     Route::get('{id}', [ProductController::class, 'show']); // Get product by ID
     Route::put('{id}', [ProductController::class, 'update']); // Update product
     Route::delete('{id}', [ProductController::class, 'destroy']); // Delete product
+    //public routes
+    
 });
+
+
+
 // Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
