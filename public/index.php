@@ -43,6 +43,8 @@ require __DIR__.'/../vendor/autoload.php';
 | to this client's browser, allowing them to enjoy our application.
 |
 */
+$port = getenv('PORT') ?: 8000;  // Fallback to 8000 if the PORT variable is not set
+$server = "127.0.0.1:$port";
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
